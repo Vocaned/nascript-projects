@@ -8,6 +8,93 @@
 // 510 = [
 // 511 = ]
 
+#Init
+    set chars_48 0
+    set chars_49 1
+    set chars_50 2
+    set chars_51 3
+    set chars_52 4
+    set chars_53 5
+    set chars_54 6
+    set chars_55 7
+    set chars_56 8
+    set chars_57 9
+
+    set chars_65 A
+    set chars_66 B
+    set chars_67 C
+    set chars_68 D
+    set chars_69 E
+    set chars_70 F
+    set chars_71 G
+    set chars_72 H
+    set chars_73 I
+    set chars_74 J
+    set chars_75 K
+    set chars_76 L
+    set chars_77 M
+    set chars_78 N
+    set chars_79 O
+    set chars_80 P
+    set chars_81 Q
+    set chars_82 R
+    set chars_83 S
+    set chars_84 T
+    set chars_85 U
+    set chars_86 V
+    set chars_87 W
+    set chars_88 X
+    set chars_89 Y
+    set chars_90 Z
+
+    set chars_97 a
+    set chars_98 b
+    set chars_99 c
+    set chars_100 d
+    set chars_101 e
+    set chars_102 f
+    set chars_103 g
+    set chars_104 h
+    set chars_105 i
+    set chars_106 j
+    set chars_107 k
+    set chars_108 l
+    set chars_109 m
+    set chars_110 n
+    set chars_111 o
+    set chars_112 p
+    set chars_113 q
+    set chars_114 r
+    set chars_115 s
+    set chars_116 t
+    set chars_117 u
+    set chars_118 v
+    set chars_119 w
+    set chars_120 x
+    set chars_121 y
+    set chars_122 z
+terminate
+
+#NoInit
+    msg "Interpreter initialized. Please execute the program again."
+    goto #Init
+quit
+
+#Run
+    resetdata packages loop_*
+    resetdata packages ram_*
+    resetdata packages output*
+
+    ifnot chars_48|=|0 goto #NoInit
+
+    set romy 2
+    set rompointer 0
+    set outputpointer 0
+    set loop_tmp_index 0
+    msg &i[Debug] &7Precalculating loops
+    goto #Loops
+quit
+
 #SetLoop
     set loop_{rompointer} {loop_tmp_{loop_tmp_index}}
     set loop_{loop_tmp_{loop_tmp_index}} {rompointer}
@@ -45,19 +132,6 @@ quit
 
 #511
     ifnot ram_{rampointer}|=|0 set rompointer {loop_{rompointer}}
-quit
-
-#Run
-    resetdata packages loop_*
-    resetdata packages ram_*
-    resetdata packages output*
-
-    set romy 2
-    set rompointer 0
-    set outputpointer 0
-    set loop_tmp_index 0
-    msg &i[Debug] &7Precalculating loops
-    goto #Loops
 quit
 
 #Loops
@@ -103,95 +177,10 @@ quit
 terminate
 
 #508
-    if ram_{rampointer}|>=|97 call #MaybeLower
-    if ram_{rampointer}|>=|65 call #MaybeUpper
-    if ram_{rampointer}|>=|48 call #MaybeNumber
+    jump #PrintChar|{chars_{ram_{rampointer}}
 quit
 
 #PrintChar
     set output_{outputpointer} {runArg1}
     setadd outputpointer 1
-quit
-
-#MaybeNumber
-    if ram_{rampointer}|<=|57 call #Number
-quit
-
-#Number
-    if ram_{rampointer}|=|48 jump #PrintChar|0
-    if ram_{rampointer}|=|49 jump #PrintChar|1
-    if ram_{rampointer}|=|50 jump #PrintChar|2
-    if ram_{rampointer}|=|51 jump #PrintChar|3
-    if ram_{rampointer}|=|52 jump #PrintChar|4
-    if ram_{rampointer}|=|53 jump #PrintChar|5
-    if ram_{rampointer}|=|54 jump #PrintChar|6
-    if ram_{rampointer}|=|55 jump #PrintChar|7
-    if ram_{rampointer}|=|56 jump #PrintChar|8
-    if ram_{rampointer}|=|57 jump #PrintChar|9
-quit
-
-#MaybeUpper
-    if ram_{rampointer}|<=|90 call #Upper
-quit
-
-#Upper
-    if ram_{rampointer}|=|65 jump #PrintChar|A
-    if ram_{rampointer}|=|66 jump #PrintChar|B
-    if ram_{rampointer}|=|67 jump #PrintChar|C
-    if ram_{rampointer}|=|68 jump #PrintChar|D
-    if ram_{rampointer}|=|69 jump #PrintChar|E
-    if ram_{rampointer}|=|70 jump #PrintChar|F
-    if ram_{rampointer}|=|71 jump #PrintChar|G
-    if ram_{rampointer}|=|72 jump #PrintChar|H
-    if ram_{rampointer}|=|73 jump #PrintChar|I
-    if ram_{rampointer}|=|74 jump #PrintChar|J
-    if ram_{rampointer}|=|75 jump #PrintChar|K
-    if ram_{rampointer}|=|76 jump #PrintChar|L
-    if ram_{rampointer}|=|77 jump #PrintChar|M
-    if ram_{rampointer}|=|78 jump #PrintChar|N
-    if ram_{rampointer}|=|79 jump #PrintChar|O
-    if ram_{rampointer}|=|80 jump #PrintChar|P
-    if ram_{rampointer}|=|81 jump #PrintChar|Q
-    if ram_{rampointer}|=|82 jump #PrintChar|R
-    if ram_{rampointer}|=|83 jump #PrintChar|S
-    if ram_{rampointer}|=|84 jump #PrintChar|T
-    if ram_{rampointer}|=|85 jump #PrintChar|U
-    if ram_{rampointer}|=|86 jump #PrintChar|V
-    if ram_{rampointer}|=|87 jump #PrintChar|W
-    if ram_{rampointer}|=|88 jump #PrintChar|X
-    if ram_{rampointer}|=|89 jump #PrintChar|Y
-    if ram_{rampointer}|=|90 jump #PrintChar|Z
-quit
-
-#MaybeLower
-    if ram_{rampointer}|<=|122 call #Lower
-quit
-
-#Lower
-    if ram_{rampointer}|=|97 jump #PrintChar|a
-    if ram_{rampointer}|=|98 jump #PrintChar|b
-    if ram_{rampointer}|=|99 jump #PrintChar|c
-    if ram_{rampointer}|=|100 jump #PrintChar|d
-    if ram_{rampointer}|=|101 jump #PrintChar|e
-    if ram_{rampointer}|=|102 jump #PrintChar|f
-    if ram_{rampointer}|=|103 jump #PrintChar|g
-    if ram_{rampointer}|=|104 jump #PrintChar|h
-    if ram_{rampointer}|=|105 jump #PrintChar|i
-    if ram_{rampointer}|=|106 jump #PrintChar|j
-    if ram_{rampointer}|=|107 jump #PrintChar|k
-    if ram_{rampointer}|=|108 jump #PrintChar|l
-    if ram_{rampointer}|=|109 jump #PrintChar|m
-    if ram_{rampointer}|=|110 jump #PrintChar|n
-    if ram_{rampointer}|=|111 jump #PrintChar|o
-    if ram_{rampointer}|=|112 jump #PrintChar|p
-    if ram_{rampointer}|=|113 jump #PrintChar|q
-    if ram_{rampointer}|=|114 jump #PrintChar|r
-    if ram_{rampointer}|=|115 jump #PrintChar|s
-    if ram_{rampointer}|=|116 jump #PrintChar|t
-    if ram_{rampointer}|=|117 jump #PrintChar|u
-    if ram_{rampointer}|=|118 jump #PrintChar|v
-    if ram_{rampointer}|=|119 jump #PrintChar|w
-    if ram_{rampointer}|=|120 jump #PrintChar|x
-    if ram_{rampointer}|=|121 jump #PrintChar|y
-    if ram_{rampointer}|=|122 jump #PrintChar|z
 quit
