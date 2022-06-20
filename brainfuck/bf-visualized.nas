@@ -142,9 +142,9 @@ terminate
     setblockid ramblock {ramx} {ramy} {ramz}
     setsub ramblock 1
 
-    if ramblock|>=|48 call #MaybeNumber
-    if ramblock|>=|65 call #MaybeUpper
     if ramblock|>=|97 call #MaybeLower
+    if ramblock|>=|65 call #MaybeUpper
+    if ramblock|>=|48 call #MaybeNumber
 quit
 
 #PrintChar

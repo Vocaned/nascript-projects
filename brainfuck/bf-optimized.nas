@@ -103,9 +103,9 @@ quit
 terminate
 
 #Print
-    if ram_{rampointer}|>=|48 call #MaybeNumber
-    if ram_{rampointer}|>=|65 call #MaybeUpper
     if ram_{rampointer}|>=|97 call #MaybeLower
+    if ram_{rampointer}|>=|65 call #MaybeUpper
+    if ram_{rampointer}|>=|48 call #MaybeNumber
 quit
 
 #PrintChar
