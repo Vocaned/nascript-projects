@@ -8,11 +8,6 @@
 // 510 = [
 // 511 = ]
 
-#NoInit
-    msg "Interpreter initialized. Please execute the program again."
-    goto #Init
-quit
-
 #Run
     resetdata packages loop_*
     resetdata packages ram_*
@@ -77,30 +72,36 @@ quit
     goto #ExecLoop
 quit
 
+#504
+// >
+    setadd rampointer 1
+quit
+
+#505
+// <
+    setsub rampointer 1
+quit
+
 #506
+// +
     setadd ram_{rampointer} 1
     setmod ram_{rampointer} 256
 quit
 
 #507
+// -
     setsub ram_{rampointer} 1
     if ram_{rampointer}|<|0 setadd ram_{rampointer} 256
 quit
 
 #510
+// [
     if ram_{rampointer}|=|0 set rompointer {loop_{rompointer}}
 quit
 
 #511
+// ]
     ifnot ram_{rampointer}|=|0 set rompointer {loop_{rompointer}}
-quit
-
-#504
-    setadd rampointer 1
-quit
-
-#505
-    setsub rampointer 1
 quit
 
 #0
@@ -109,8 +110,13 @@ quit
 terminate
 
 #508
-    set output {output}{chars_{ram_{rampointer}}
+    set output {output}{chars_{ram_{rampointer}}}
 quit
+
+#NoInit
+    msg "Interpreter initialized. Please execute the program again."
+    goto #Init
+terminate
 
 #Init
     set chars_48 0
