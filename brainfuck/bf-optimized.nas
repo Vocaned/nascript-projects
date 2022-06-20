@@ -8,6 +8,110 @@
 // 510 = [
 // 511 = ]
 
+#NoInit
+    msg "Interpreter initialized. Please execute the program again."
+    goto #Init
+quit
+
+#Run
+    resetdata packages loop_*
+    resetdata packages ram_*
+    resetdata packages output
+
+    ifnot chars_48|=|0 goto #NoInit
+
+    set romy 2
+    set rompointer 0
+    set loop_tmp_index 0
+    msg &i[Debug] &7Precalculating loops
+    goto #Loops
+quit
+
+#Loops
+    call #GetRomCoords
+    setblockid romblock {romx} {romy} {romz}
+
+    if romblock|=|0 goto #Execute
+    if romblock|=|510 call #SetTmpLoop
+    if romblock|=|511 call #SetLoop
+
+    setadd rompointer 1
+    goto #Loops
+quit
+
+#SetLoop
+    set loop_{rompointer} {loop_tmp_{loop_tmp_index}}
+    set loop_{loop_tmp_{loop_tmp_index}} {rompointer}
+    msg &i[Debug] &7Loop({loop_tmp_{loop_tmp_index}}, {rompointer})
+    setsub loop_tmp_index 1
+quit
+
+#SetTmpLoop
+    setadd loop_tmp_index 1
+    set loop_tmp_{loop_tmp_index} {rompointer}
+quit
+
+#GetRomCoords
+    set romx {rompointer}
+    setmod romx 32
+
+    set romz {rompointer}
+    setdiv romz 32
+    setrounddown romz
+quit
+
+#Execute
+    set rompointer 0
+    set rampointer 0
+    msg &i[Debug] &7Executing code
+    goto #ExecLoop
+quit
+
+#ExecLoop
+    call #GetRomCoords
+    setblockid romblock {romx} {romy} {romz}
+
+    call #{romblock}
+
+    setadd rompointer 1
+    goto #ExecLoop
+quit
+
+#506
+    setadd ram_{rampointer} 1
+    setmod ram_{rampointer} 256
+quit
+
+#507
+    setsub ram_{rampointer} 1
+    if ram_{rampointer}|<|0 setadd ram_{rampointer} 256
+quit
+
+#510
+    if ram_{rampointer}|=|0 set rompointer {loop_{rompointer}}
+quit
+
+#511
+    ifnot ram_{rampointer}|=|0 set rompointer {loop_{rompointer}}
+quit
+
+#504
+    setadd rampointer 1
+quit
+
+#505
+    setsub rampointer 1
+quit
+
+#0
+    msg &i[Debug] &7Done executing
+    msg &r[Output] &7{output}
+terminate
+
+#508
+    set output {output}{chars_{ram_{rampointer}}
+quit
+
 #Init
     set chars_48 0
     set chars_49 1
@@ -74,113 +178,3 @@
     set chars_121 y
     set chars_122 z
 terminate
-
-#NoInit
-    msg "Interpreter initialized. Please execute the program again."
-    goto #Init
-quit
-
-#Run
-    resetdata packages loop_*
-    resetdata packages ram_*
-    resetdata packages output*
-
-    ifnot chars_48|=|0 goto #NoInit
-
-    set romy 2
-    set rompointer 0
-    set outputpointer 0
-    set loop_tmp_index 0
-    msg &i[Debug] &7Precalculating loops
-    goto #Loops
-quit
-
-#SetLoop
-    set loop_{rompointer} {loop_tmp_{loop_tmp_index}}
-    set loop_{loop_tmp_{loop_tmp_index}} {rompointer}
-    msg &i[Debug] &7Loop({loop_tmp_{loop_tmp_index}}, {rompointer})
-    setsub loop_tmp_index 1
-quit
-
-#SetTmpLoop
-    setadd loop_tmp_index 1
-    set loop_tmp_{loop_tmp_index} {rompointer}
-quit
-
-#GetRomCoords
-    set romx {rompointer}
-    setmod romx 32
-
-    set romz {rompointer}
-    setdiv romz 32
-    setrounddown romz
-quit
-
-#506
-    setadd ram_{rampointer} 1
-    setmod ram_{rampointer} 256
-quit
-
-#507
-    setsub ram_{rampointer} 1
-    if ram_{rampointer}|<|0 setadd ram_{rampointer} 256
-quit
-
-#510
-    if ram_{rampointer}|=|0 set rompointer {loop_{rompointer}}
-quit
-
-#511
-    ifnot ram_{rampointer}|=|0 set rompointer {loop_{rompointer}}
-quit
-
-#Loops
-    call #GetRomCoords
-    setblockid romblock {romx} {romy} {romz}
-
-    if romblock|=|0 goto #Execute
-    if romblock|=|510 call #SetTmpLoop
-    if romblock|=|511 call #SetLoop
-
-    setadd rompointer 1
-    goto #Loops
-quit
-
-#Execute
-    set rompointer 0
-    set rampointer 0
-    msg &i[Debug] &7Executing code
-    goto #ExecLoop
-quit
-
-#504
-    setadd rampointer 1
-quit
-
-#505
-    setsub rampointer 1
-quit
-
-#ExecLoop
-    call #GetRomCoords
-    setblockid romblock {romx} {romy} {romz}
-
-    call #{romblock}
-
-    setadd rompointer 1
-    goto #ExecLoop
-quit
-
-#0
-    msg &i[Debug] &7Done executing
-    msg &r[Output] &7{output_0}{output_1}{output_2}{output_3}{output_4}{output_5}{output_6}{output_7}{output_8}{output_9}{output_10}{output_11}{output_12}{output_13}{output_14}{output_15}{output_16}{output_17}{output_18}{output_19}{output_20}{output_21}{output_22}{output_23}{output_24}{output_25}{output_26}{output_27}{output_28}{output_29}{output_30}{output_31}
-terminate
-
-#508
-    jump #PrintChar|{chars_{ram_{rampointer}}
-quit
-
-#PrintChar
-    set output_{outputpointer} {runArg1}
-    setadd outputpointer 1
-quit
