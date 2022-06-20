@@ -29,21 +29,21 @@ quit
     setrounddown romz
 quit
 
-#AddRam
+#506
     setadd ram_{rampointer} 1
     setmod ram_{rampointer} 256
 quit
 
-#SubRam
+#507
     setsub ram_{rampointer} 1
     if ram_{rampointer}|<|0 setadd ram_{rampointer} 256
 quit
 
-#LoopEnter
+#510
     if ram_{rampointer}|=|0 set rompointer {loop_{rompointer}}
 quit
 
-#LoopEnd
+#511
     ifnot ram_{rampointer}|=|0 set rompointer {loop_{rompointer}}
 quit
 
@@ -79,30 +79,30 @@ quit
     goto #ExecLoop
 quit
 
+#504
+    setadd rampointer 1
+quit
+
+#505
+    setsub rampointer 1
+quit
+
 #ExecLoop
     call #GetRomCoords
     setblockid romblock {romx} {romy} {romz}
 
-    if romblock|=|0 goto #Quit
-    if romblock|=|504 setadd rampointer 1
-    if romblock|=|505 setsub rampointer 1
-    if romblock|=|506 call #AddRam
-    if romblock|=|507 call #SubRam
-    if romblock|=|508 call #Print
-    //if romblock|=|509 call #Input
-    if romblock|=|510 call #LoopEnter
-    if romblock|=|511 call #LoopEnd
+    call #{romblock}
 
     setadd rompointer 1
     goto #ExecLoop
 quit
 
-#Quit
+#0
     msg &i[Debug] &7Done executing
     msg &r[Output] &7{output_0}{output_1}{output_2}{output_3}{output_4}{output_5}{output_6}{output_7}{output_8}{output_9}{output_10}{output_11}{output_12}{output_13}{output_14}{output_15}{output_16}{output_17}{output_18}{output_19}{output_20}{output_21}{output_22}{output_23}{output_24}{output_25}{output_26}{output_27}{output_28}{output_29}{output_30}{output_31}
 terminate
 
-#Print
+#508
     if ram_{rampointer}|>=|97 call #MaybeLower
     if ram_{rampointer}|>=|65 call #MaybeUpper
     if ram_{rampointer}|>=|48 call #MaybeNumber
