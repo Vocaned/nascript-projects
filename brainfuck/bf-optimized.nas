@@ -119,6 +119,12 @@ quit
 terminate
 
 #Init
+    set chars_32 _
+    set chars_33 !
+    set chars_44 ,
+    set chars_46 .
+    set chars_63 ?
+
     set chars_48 0
     set chars_49 1
     set chars_50 2
