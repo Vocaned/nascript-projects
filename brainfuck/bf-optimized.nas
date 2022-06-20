@@ -118,16 +118,16 @@ quit
 quit
 
 #Number
-    if ram_{rampointer}|=|48 call #PrintChar|0
-    if ram_{rampointer}|=|49 call #PrintChar|1
-    if ram_{rampointer}|=|50 call #PrintChar|2
-    if ram_{rampointer}|=|51 call #PrintChar|3
-    if ram_{rampointer}|=|52 call #PrintChar|4
-    if ram_{rampointer}|=|53 call #PrintChar|5
-    if ram_{rampointer}|=|54 call #PrintChar|6
-    if ram_{rampointer}|=|55 call #PrintChar|7
-    if ram_{rampointer}|=|56 call #PrintChar|8
-    if ram_{rampointer}|=|57 call #PrintChar|9
+    if ram_{rampointer}|=|48 jump #PrintChar|0
+    if ram_{rampointer}|=|49 jump #PrintChar|1
+    if ram_{rampointer}|=|50 jump #PrintChar|2
+    if ram_{rampointer}|=|51 jump #PrintChar|3
+    if ram_{rampointer}|=|52 jump #PrintChar|4
+    if ram_{rampointer}|=|53 jump #PrintChar|5
+    if ram_{rampointer}|=|54 jump #PrintChar|6
+    if ram_{rampointer}|=|55 jump #PrintChar|7
+    if ram_{rampointer}|=|56 jump #PrintChar|8
+    if ram_{rampointer}|=|57 jump #PrintChar|9
 quit
 
 #MaybeUpper
@@ -135,32 +135,32 @@ quit
 quit
 
 #Upper
-    if ram_{rampointer}|=|65 call #PrintChar|A
-    if ram_{rampointer}|=|66 call #PrintChar|B
-    if ram_{rampointer}|=|67 call #PrintChar|C
-    if ram_{rampointer}|=|68 call #PrintChar|D
-    if ram_{rampointer}|=|69 call #PrintChar|E
-    if ram_{rampointer}|=|70 call #PrintChar|F
-    if ram_{rampointer}|=|71 call #PrintChar|G
-    if ram_{rampointer}|=|72 call #PrintChar|H
-    if ram_{rampointer}|=|73 call #PrintChar|I
-    if ram_{rampointer}|=|74 call #PrintChar|J
-    if ram_{rampointer}|=|75 call #PrintChar|K
-    if ram_{rampointer}|=|76 call #PrintChar|L
-    if ram_{rampointer}|=|77 call #PrintChar|M
-    if ram_{rampointer}|=|78 call #PrintChar|N
-    if ram_{rampointer}|=|79 call #PrintChar|O
-    if ram_{rampointer}|=|80 call #PrintChar|P
-    if ram_{rampointer}|=|81 call #PrintChar|Q
-    if ram_{rampointer}|=|82 call #PrintChar|R
-    if ram_{rampointer}|=|83 call #PrintChar|S
-    if ram_{rampointer}|=|84 call #PrintChar|T
-    if ram_{rampointer}|=|85 call #PrintChar|U
-    if ram_{rampointer}|=|86 call #PrintChar|V
-    if ram_{rampointer}|=|87 call #PrintChar|W
-    if ram_{rampointer}|=|88 call #PrintChar|X
-    if ram_{rampointer}|=|89 call #PrintChar|Y
-    if ram_{rampointer}|=|90 call #PrintChar|Z
+    if ram_{rampointer}|=|65 jump #PrintChar|A
+    if ram_{rampointer}|=|66 jump #PrintChar|B
+    if ram_{rampointer}|=|67 jump #PrintChar|C
+    if ram_{rampointer}|=|68 jump #PrintChar|D
+    if ram_{rampointer}|=|69 jump #PrintChar|E
+    if ram_{rampointer}|=|70 jump #PrintChar|F
+    if ram_{rampointer}|=|71 jump #PrintChar|G
+    if ram_{rampointer}|=|72 jump #PrintChar|H
+    if ram_{rampointer}|=|73 jump #PrintChar|I
+    if ram_{rampointer}|=|74 jump #PrintChar|J
+    if ram_{rampointer}|=|75 jump #PrintChar|K
+    if ram_{rampointer}|=|76 jump #PrintChar|L
+    if ram_{rampointer}|=|77 jump #PrintChar|M
+    if ram_{rampointer}|=|78 jump #PrintChar|N
+    if ram_{rampointer}|=|79 jump #PrintChar|O
+    if ram_{rampointer}|=|80 jump #PrintChar|P
+    if ram_{rampointer}|=|81 jump #PrintChar|Q
+    if ram_{rampointer}|=|82 jump #PrintChar|R
+    if ram_{rampointer}|=|83 jump #PrintChar|S
+    if ram_{rampointer}|=|84 jump #PrintChar|T
+    if ram_{rampointer}|=|85 jump #PrintChar|U
+    if ram_{rampointer}|=|86 jump #PrintChar|V
+    if ram_{rampointer}|=|87 jump #PrintChar|W
+    if ram_{rampointer}|=|88 jump #PrintChar|X
+    if ram_{rampointer}|=|89 jump #PrintChar|Y
+    if ram_{rampointer}|=|90 jump #PrintChar|Z
 quit
 
 #MaybeLower
@@ -168,30 +168,30 @@ quit
 quit
 
 #Lower
-    if ram_{rampointer}|=|97 call #PrintChar|a
-    if ram_{rampointer}|=|98 call #PrintChar|b
-    if ram_{rampointer}|=|99 call #PrintChar|c
-    if ram_{rampointer}|=|100 call #PrintChar|d
-    if ram_{rampointer}|=|101 call #PrintChar|e
-    if ram_{rampointer}|=|102 call #PrintChar|f
-    if ram_{rampointer}|=|103 call #PrintChar|g
-    if ram_{rampointer}|=|104 call #PrintChar|h
-    if ram_{rampointer}|=|105 call #PrintChar|i
-    if ram_{rampointer}|=|106 call #PrintChar|j
-    if ram_{rampointer}|=|107 call #PrintChar|k
-    if ram_{rampointer}|=|108 call #PrintChar|l
-    if ram_{rampointer}|=|109 call #PrintChar|m
-    if ram_{rampointer}|=|110 call #PrintChar|n
-    if ram_{rampointer}|=|111 call #PrintChar|o
-    if ram_{rampointer}|=|112 call #PrintChar|p
-    if ram_{rampointer}|=|113 call #PrintChar|q
-    if ram_{rampointer}|=|114 call #PrintChar|r
-    if ram_{rampointer}|=|115 call #PrintChar|s
-    if ram_{rampointer}|=|116 call #PrintChar|t
-    if ram_{rampointer}|=|117 call #PrintChar|u
-    if ram_{rampointer}|=|118 call #PrintChar|v
-    if ram_{rampointer}|=|119 call #PrintChar|w
-    if ram_{rampointer}|=|120 call #PrintChar|x
-    if ram_{rampointer}|=|121 call #PrintChar|y
-    if ram_{rampointer}|=|122 call #PrintChar|z
+    if ram_{rampointer}|=|97 jump #PrintChar|a
+    if ram_{rampointer}|=|98 jump #PrintChar|b
+    if ram_{rampointer}|=|99 jump #PrintChar|c
+    if ram_{rampointer}|=|100 jump #PrintChar|d
+    if ram_{rampointer}|=|101 jump #PrintChar|e
+    if ram_{rampointer}|=|102 jump #PrintChar|f
+    if ram_{rampointer}|=|103 jump #PrintChar|g
+    if ram_{rampointer}|=|104 jump #PrintChar|h
+    if ram_{rampointer}|=|105 jump #PrintChar|i
+    if ram_{rampointer}|=|106 jump #PrintChar|j
+    if ram_{rampointer}|=|107 jump #PrintChar|k
+    if ram_{rampointer}|=|108 jump #PrintChar|l
+    if ram_{rampointer}|=|109 jump #PrintChar|m
+    if ram_{rampointer}|=|110 jump #PrintChar|n
+    if ram_{rampointer}|=|111 jump #PrintChar|o
+    if ram_{rampointer}|=|112 jump #PrintChar|p
+    if ram_{rampointer}|=|113 jump #PrintChar|q
+    if ram_{rampointer}|=|114 jump #PrintChar|r
+    if ram_{rampointer}|=|115 jump #PrintChar|s
+    if ram_{rampointer}|=|116 jump #PrintChar|t
+    if ram_{rampointer}|=|117 jump #PrintChar|u
+    if ram_{rampointer}|=|118 jump #PrintChar|v
+    if ram_{rampointer}|=|119 jump #PrintChar|w
+    if ram_{rampointer}|=|120 jump #PrintChar|x
+    if ram_{rampointer}|=|121 jump #PrintChar|y
+    if ram_{rampointer}|=|122 jump #PrintChar|z
 quit
