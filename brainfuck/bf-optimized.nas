@@ -119,7 +119,7 @@ quit
 terminate
 
 #Init
-    set chars_32 _
+    set chars_32  &7
     set chars_33 !
     set chars_44 ,
     set chars_46 .
